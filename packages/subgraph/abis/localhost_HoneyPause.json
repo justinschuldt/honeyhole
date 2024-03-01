@@ -1,0 +1,355 @@
+[
+  {
+    "inputs": [
+      {
+        "internalType": "bytes",
+        "name": "innerError",
+        "type": "bytes"
+      }
+    ],
+    "name": "ExploitFailedError",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "ExploitSucceededError",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "InsufficientPayoutError",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "InvalidClaimError",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "InvalidExploitError",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "InvalidOperatorError",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "InvalidPotConfigError",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "OnlyPotOperatorError",
+    "type": "error"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "potId",
+        "type": "uint256"
+      }
+    ],
+    "name": "Cancelled",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "potId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "contract ERC20",
+        "name": "payoutToken",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "payoutAmount",
+        "type": "uint256"
+      }
+    ],
+    "name": "Claimed",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "potId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "name",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "internalType": "contract ERC20",
+        "name": "payoutToken",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "payoutAmount",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "contract IVerifier",
+        "name": "verifier",
+        "type": "address"
+      }
+    ],
+    "name": "Created",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "potId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "oldOperator",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "newOperator",
+        "type": "address"
+      }
+    ],
+    "name": "OperatorChanged",
+    "type": "event"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "name",
+        "type": "string"
+      },
+      {
+        "internalType": "contract ERC20",
+        "name": "payoutToken",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "payoutAmount",
+        "type": "uint256"
+      },
+      {
+        "internalType": "contract IVerifier",
+        "name": "verifier",
+        "type": "address"
+      },
+      {
+        "internalType": "contract IPauser",
+        "name": "pauser",
+        "type": "address"
+      },
+      {
+        "internalType": "contract IPayer",
+        "name": "payer",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "operator",
+        "type": "address"
+      }
+    ],
+    "name": "add",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "potId",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "potId",
+        "type": "uint256"
+      }
+    ],
+    "name": "cancel",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "potId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "address payable",
+        "name": "payReceiver",
+        "type": "address"
+      },
+      {
+        "internalType": "contract IExploiter",
+        "name": "exploiter",
+        "type": "address"
+      },
+      {
+        "internalType": "bytes",
+        "name": "exploitData",
+        "type": "bytes"
+      }
+    ],
+    "name": "claim",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "potId",
+        "type": "uint256"
+      }
+    ],
+    "name": "isPotClaimed",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "claimed",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "potCount",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "potId",
+        "type": "uint256"
+      }
+    ],
+    "name": "pots",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "operator",
+        "type": "address"
+      },
+      {
+        "internalType": "contract ERC20",
+        "name": "payoutToken",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "payoutAmount",
+        "type": "uint256"
+      },
+      {
+        "internalType": "contract IVerifier",
+        "name": "verifier",
+        "type": "address"
+      },
+      {
+        "internalType": "contract IPauser",
+        "name": "pauser",
+        "type": "address"
+      },
+      {
+        "internalType": "contract IPayer",
+        "name": "payer",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "potId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "address",
+        "name": "newOperator",
+        "type": "address"
+      }
+    ],
+    "name": "replaceOperator",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "contract IExploiter",
+        "name": "exploiter",
+        "type": "address"
+      },
+      {
+        "internalType": "contract IVerifier",
+        "name": "verifier",
+        "type": "address"
+      },
+      {
+        "internalType": "bytes",
+        "name": "exploitData",
+        "type": "bytes"
+      }
+    ],
+    "name": "sandboxExploit",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  }
+]

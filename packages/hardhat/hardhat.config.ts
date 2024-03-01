@@ -21,7 +21,7 @@ const etherscanApiKey = process.env.ETHERSCAN_API_KEY || "DNXJA8RX2Q3VZ4URQIWP7Z
 
 const config: HardhatUserConfig = {
   solidity: {
-    version: "0.8.17",
+    version: "0.8.24",
     settings: {
       optimizer: {
         enabled: true,
@@ -35,6 +35,15 @@ const config: HardhatUserConfig = {
     deployer: {
       // By default, it will take the first Hardhat account as the deployer
       default: 0,
+    },
+    user: {
+      default: 1,
+    },
+    protocolOperator: {
+      default: 2,
+    },
+    whitehat: {
+      default: 3,
     },
   },
   networks: {

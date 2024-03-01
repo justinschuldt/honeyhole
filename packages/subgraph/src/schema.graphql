@@ -1,17 +1,81 @@
-type Greeting @entity {
+type Pot @entity {
   id: ID!
-  sender: Sender!
-  greeting: String!
-  premium: Boolean
-  value: BigInt
+  name: String!
+  payoutToken: Bytes! # ERC20
+  payoutAmount: BigInt! # uint256
+  verifier: Verifier! 
+  # pauser: Pauser! 
+  # payer: Payer! 
+  # operator: Operator!
   createdAt: BigInt!
-  transactionHash: String!
+  sender: Bytes!
+  claimed: Boolean!
+  claimedAt: BigInt
+  claimedWhitehat: Whitehat
+  claim: Claim
+  cancelled: Boolean!
+  cancelledAt: BigInt
 }
 
-type Sender @entity {
+type Verifier @entity(immutable: true) {
   id: ID!
   address: Bytes!
-  greetings: [Greeting!] @derivedFrom(field: "sender")
   createdAt: BigInt!
-  greetingCount: BigInt!
+  sender: Bytes!
+  pots: [Pot!]! @derivedFrom(field: "verifier")
+ 
+}
+type Pauser @entity(immutable: true) {
+  id: ID!
+  address: Bytes!
+  createdAt: BigInt!
+  # pots: [Pot!]! @derivedFrom(field: "pauser")
+}
+type Payer @entity(immutable: true) {
+  id: ID!
+  address: Bytes!
+  createdAt: BigInt!
+}
+type Operator @entity(immutable: true) {
+  id: ID!
+  address: Bytes!
+  createdAt: BigInt!
+}
+type Claim @entity(immutable: true) {
+  id: ID!
+  sender: Bytes!
+  transactionHash: String!
+  createdAt: BigInt!
+  whitehat: Whitehat!
+  potId: BigInt!
+  payoutToken: Bytes!
+  payoutAmount: BigInt!
+  # verifier: Verifier!
+}
+type SandboxExploit @entity(immutable: true) {
+  id: ID!
+  sender: Bytes!
+  createdAt: BigInt!
+  # transactionHash: String!
+  whitehat: Whitehat!
+  exploiter: Exploiter!
+  verifier: Verifier!
+  exploitData: Bytes!
+  # the following fields only if successful
+  potId: BigInt!
+  successful: Boolean!
+}
+
+type Whitehat @entity {
+  id: ID!
+  address: Bytes!
+  createdAt: BigInt!
+  claims: [Claim!]! @derivedFrom(field: "whitehat")
+}
+type Exploiter @entity {
+  id: ID!
+  address: Bytes!
+  createdAt: BigInt!
+  exploitData: Bytes!
+  exploits: [SandboxExploit!]! @derivedFrom(field: "exploiter")
 }

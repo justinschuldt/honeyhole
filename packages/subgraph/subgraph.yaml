@@ -1,26 +1,34 @@
 specVersion: 0.0.4
-description: Greetings
-repository: https://github.com/scaffold-eth/se-2/packages/subgraph/
+description: HoneyPause
+repository: https://github.com/justinschuldt/honeyhole/packages/subgraph/
 schema:
   file: ./src/schema.graphql
 dataSources:
   - kind: ethereum/contract
-    name: YourContract
+    name: HoneyPause
     network: localhost
     source:
-      abi: YourContract
-      address: "0x5FbDB2315678afecb367f032d93F642f64180aa3"
+      abi: HoneyPause
+      address: "0xa513E6E4b8f2a923D98304ec87F64353C4D5C853"
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
-        - Greeting
-        - Sender
+        - Pot
+        - Verifier
+        - Whitehat
+        - Claim
+        - Exploiter
+        - SandboxExploit
       abis:
-        - name: YourContract
-          file: ./abis/localhost_YourContract.json
+        - name: HoneyPause
+          file: ./abis/localhost_HoneyPause.json
       eventHandlers:
-        - event: GreetingChange(indexed address,string,bool,uint256)
-          handler: handleGreetingChange
-      file: ./src/mapping.ts
+        - event: Created(uint256,string,address,uint256,address)
+          handler: handleCreated
+        - event: Cancelled(uint256)
+          handler: handleCancelled
+        - event: Claimed(indexed uint256,address,uint256)
+          handler: handleClaimed
+      file: ./src/mappings.ts
