@@ -36,7 +36,8 @@
     "local-create": "yarn workspace @se-2/subgraph local-create",
     "local-ship": "yarn workspace @se-2/subgraph local-ship",
     "abi-copy": "yarn workspace @se-2/subgraph abi-copy",
-    "codegen": "yarn workspace @se-2/subgraph codegen"
+    "codegen": "yarn workspace @se-2/subgraph codegen",
+    "purge": "rm -rf packages/hardhat/deployments && rm -rf packages/hardhat/artifacts && rm -rf packages/hardhat/cache && rm -rf packages/hardhat/typechain-types && rm -rf packages/nextjs/.next && rm -rf packages/subgraph/build && rm -rf packages/subgraph/generated && yarn workspace @se-2/subgraph graph clean"
   },
   "packageManager": "yarn@3.2.3",
   "devDependencies": {
